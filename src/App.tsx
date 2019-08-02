@@ -3,16 +3,19 @@ import { Animated, StyleSheet, View } from 'react-native'
 // import { NavigationContainer } from 'react-navigation'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { AuthNavigator } from '@src/navigation/AuthNavigator'
+import Config from 'react-native-config'
 
 import { createRootNavigation } from './navigation'
 import colors from './assets/colors'
 
-// DEV条件追加
-console.disableYellowBox = true
+if (__DEV__) {
+  console.disableYellowBox = true
+}
 
 function App() {
   const RootNavigation = createRootNavigation(true)
-  return <RootNavigation uriPrefix={'myApp'} />
+  console.log(Config.APP_SCHEME)
+  return <RootNavigation uriPrefix={Config.APP_SCHEME} />
 }
 
 export default App
