@@ -5,12 +5,17 @@
   "scripts": {
     "start": "react-native start",
     "test": "jest",
-    "fmt": "prettier --write src/**/*.{js,tsx} "
+    "fmt": "prettier --write src/**/*.{js,tsx} ",
+    "tsc": "tsc --watch",
+    "clean": "watchman watch-del-all && lsof -n -P -i :8081 -t | xargs kill && rm -rf ~/Library/Developer/Xcode/DerivedData && sudo rm -rf '~/Library/Developer/Xcode/iOS\\ DeviceSupport/*' && rm -rf ios/build android/app/build node_modules && yarn install"
   },
   "dependencies": {
     "@types/styled-components": "^4.1.18",
     "react": "16.8.6",
     "react-native": "0.60.4",
+    "react-native-gesture-handler": "^1.3.0",
+    "react-native-reanimated": "^1.1.0",
+    "react-navigation": "^3.11.1",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {

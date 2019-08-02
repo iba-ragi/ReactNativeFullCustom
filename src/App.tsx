@@ -1,24 +1,18 @@
-import React from 'react'
-import styled from 'styled-components/native'
+import React, { useState, useCallback } from 'react'
+import { Animated, StyleSheet, View } from 'react-native'
+// import { NavigationContainer } from 'react-navigation'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+import { AuthNavigator } from '@src/navigation/AuthNavigator'
 
-const App = () => {
-  return (
-    <Wrapper>
-      <HelloWorld />
-    </Wrapper>
-  )
+import { createRootNavigation } from './navigation'
+import colors from './assets/colors'
+
+// DEV条件追加
+console.disableYellowBox = true
+
+function App() {
+  const RootNavigation = createRootNavigation(true)
+  return <RootNavigation uriPrefix={'myApp'} />
 }
-
-const Wrapper = styled.View`
-  flex: 1;
-  background-color: #dbedff;
-  align-items: center;
-  justify-content: center;
-`
-const HelloWorld = styled.Text.attrs({
-  children: 'HelloWorld'
-})`
-  font-size: 18px;
-`
 
 export default App
