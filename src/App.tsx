@@ -1,10 +1,8 @@
-import React, { useState, useCallback } from 'react'
-// import { PersistGate } from 'redux-persist/integration/react'
-import { Animated, StyleSheet, View } from 'react-native'
-// import { NavigationContainer } from 'react-navigation'
+import React, { useState, useEffect } from 'react'
 import { Provider } from 'react-redux'
-import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-import { AuthNavigator } from '@src/navigation/AuthNavigator'
+import { PersistGate } from 'redux-persist/integration/react'
+import { NavigationContainer } from 'react-navigation'
+
 import Config from 'react-native-config'
 
 import Store from './store'
@@ -15,12 +13,19 @@ if (__DEV__) {
 }
 
 function App() {
-  const RootNavigation = createRootNavigation(true)
-  console.log(Config.ENV)
+  const [{ RootNavigation }, setRootNavigation] = useState<{
+    RootNavigation: NavigationContainer | undefined
+  }>({ RootNavigation: undefined })
+  useEffect(() => {
+    setRootNavigation({ RootNavigation: createRootNavigation(true) })
+    console.log(Config.ENV)
+  }, [])
   return (
-    <Provider store={Store.store}>
-      <RootNavigation uriPrefix={Config.SCHEME_URL} />
-    </Provider>
+    <PersistGate loading={null} persistor={Store.persistor}>
+      <Provider store={Store.store}>
+        {RootNavigation && <RootNavigation uriPrefix={Config.SCHEME_URL} />}
+      </Provider>
+    </PersistGate>
   )
 }
 

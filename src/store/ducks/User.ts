@@ -7,7 +7,7 @@ type State = {
 }
 const initial: State = {
   user: {
-    user_id: '01011111',
+    user_id: 1111,
     name: 'test name'
   },
   isFetchingUser: false
@@ -19,8 +19,8 @@ export default (state: State = initial, action: Actions): State => {
       return {
         ...state,
         user: {
-          name: state.user!.name + 'o',
-          user_id: state.user!.user_id + '0'
+          user_id: state.user!.user_id + 1,
+          name: state.user!.name
         }
       }
     case 'USER#START_FETCHING_USER':
@@ -73,7 +73,7 @@ export const fetchUser = () => async (
     // const { user_id } = getState().SessionDomainState.user!
     // const data = await getUser(user_id)
     const data = {
-      user_id: 'string',
+      user_id: 1111,
       name: 'string'
     }
     dispatch(successFetchingUser(data))

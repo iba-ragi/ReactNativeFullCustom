@@ -13,6 +13,7 @@
     "clean": "watchman watch-del-all && lsof -n -P -i :8081 -t | xargs kill && rm -rf ~/Library/Developer/Xcode/DerivedData && sudo rm -rf '~/Library/Developer/Xcode/iOS\\ DeviceSupport/*' && rm -rf ios/build android/app/build node_modules ios/Pods && yarn install && cd ios && pod install && cd .. && yarn start --reset-cache"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.6.1",
     "@types/react-redux": "^7.1.1",
     "@types/styled-components": "^4.1.18",
     "react": "16.8.6",
@@ -23,6 +24,7 @@
     "react-navigation": "^3.11.1",
     "react-redux": "^7.1.0",
     "redux-devtools-extension": "^2.13.8",
+    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.3.2"
   },

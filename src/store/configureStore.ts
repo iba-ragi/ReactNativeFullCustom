@@ -1,34 +1,29 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
-// import { persistStore, persistReducer, PersistConfig } from 'redux-persist'
-// import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
+import { persistStore, persistReducer, PersistConfig } from 'redux-persist'
+import AsyncStorage from '@react-native-community/async-storage'
 import { StoreType } from '.'
 
 const middlewares: any = []
 middlewares.push(thunk)
 
-// const persistConfig: PersistConfig = {
-//   key: 'root',
-//   storage,
-//   whitelist: [
-//     'SessionDomainState',
-//     'LoginBonusDomainState',
-//     'EntryTournamentDetailAppState',
-//     'MovieRewardTicketDomainState'
-//   ]
-// }
+const persistConfig: PersistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['UserState']
+}
 
 export const configureStore = (reducers: any) => {
-  // const persistedReducer = persistReducer<StoreType, any>(
-  //   persistConfig,
-  //   combineReducers(reducers)
-  // )
+  const persistedReducer = persistReducer<StoreType, any>(
+    persistConfig,
+    combineReducers(reducers)
+  )
   const store = createStore(
-    combineReducers(reducers),
+    persistedReducer,
     composeWithDevTools(applyMiddleware(...middlewares))
   )
-  // let persistor = persistStore(store)
+  let persistor = persistStore(store)
 
-  return { store }
+  return { store, persistor }
 }
