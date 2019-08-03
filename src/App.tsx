@@ -1,12 +1,14 @@
 import React, { useState, useCallback } from 'react'
+// import { PersistGate } from 'redux-persist/integration/react'
 import { Animated, StyleSheet, View } from 'react-native'
 // import { NavigationContainer } from 'react-navigation'
+import { Provider } from 'react-redux'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { AuthNavigator } from '@src/navigation/AuthNavigator'
 import Config from 'react-native-config'
 
+import Store from './store'
 import { createRootNavigation } from './navigation'
-import colors from './assets/colors'
 
 if (__DEV__) {
   console.disableYellowBox = true
@@ -15,7 +17,11 @@ if (__DEV__) {
 function App() {
   const RootNavigation = createRootNavigation(true)
   console.log(Config.ENV)
-  return <RootNavigation uriPrefix={Config.SCHEME_URL} />
+  return (
+    <Provider store={Store.store}>
+      <RootNavigation uriPrefix={Config.SCHEME_URL} />
+    </Provider>
+  )
 }
 
 export default App
