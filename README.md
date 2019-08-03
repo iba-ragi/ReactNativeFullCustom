@@ -1,14 +1,33 @@
 ## Branches
 - master
+- dev
 
-## 
+## Environment
+- Production
+- Development
 
 ## Setup
-1. modules
+1. Install modules
 ```shell
-$ yarn install
+$ yarn install && cd ios && pod install && cd ..  
 ```
-2. build
+2. Build
 ```shell
-react-native run-ios // or react-native run-ios
+yarn dev:ios // yarn dev:android
+```
+
+## Debugging
+- Boot `Teact Native Debugger`
+```shell
+$ yarn debugger
+```
+
+- Watch/Auto-Compile by `Typescript`
+```shell
+$ yarn tsc
+```
+
+## Troubleshooting
+```shell
+$ yarn clean
 ```
