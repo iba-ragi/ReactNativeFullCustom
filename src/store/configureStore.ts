@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-// import { composeWithDevTools } from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 // import { persistStore, persistReducer, PersistConfig } from 'redux-persist'
 // import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
@@ -24,11 +24,9 @@ export const configureStore = (reducers: any) => {
   //   persistConfig,
   //   combineReducers(reducers)
   // )
-  console.log({ reducers })
   const store = createStore(
-    combineReducers(reducers)
-    // middlewares
-    // composeWithDevTools(applyMiddleware(...middlwares))
+    combineReducers(reducers),
+    composeWithDevTools(applyMiddleware(...middlewares))
   )
   // let persistor = persistStore(store)
 

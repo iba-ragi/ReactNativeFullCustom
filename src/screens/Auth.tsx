@@ -1,13 +1,23 @@
 import React from 'react'
+import { Text } from 'react-native'
 import styled from 'styled-components/native'
 import { NavigationScreenProps } from 'react-navigation'
 import { routeNames } from '@src/navigation/routeNames'
+import { useSelector, useDispatch } from '@src/hooks/useRedux'
+import { addUserText } from '@src/store/ducks/User'
 
 type Props = {} & NavigationScreenProps
 
 export function Auth({ navigation }: Props) {
+  const dispatch = useDispatch()
+  const { user } = useSelector(({ UserState: { user } }) => ({
+    user
+  }))
   return (
     <Wrapper>
+      <Text>name: {user!.name}</Text>
+      <Text>user_id: {user!.user_id}</Text>
+      <Text onPress={() => dispatch(addUserText())}>[add 0]</Text>
       <HelloWorld
         onPress={() => {
           navigation.navigate(routeNames.Main.routeName)

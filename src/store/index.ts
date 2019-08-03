@@ -1,15 +1,15 @@
 import { configureStore } from './configureStore'
-import ItemReducer from './ducks/Item'
-import UserReducer from './ducks/Item'
+import ItemState from './ducks/Item'
+import UserState from './ducks/User'
 
 export type StoreType = {
-  Item: ReturnType<typeof ItemReducer>
-  User: ReturnType<typeof UserReducer>
+  ItemState: ReturnType<typeof ItemState>
+  UserState: ReturnType<typeof UserState>
 }
 
 const reducers = {
-  ItemReducer,
-  UserReducer
+  ItemState,
+  UserState
 }
 
 export default configureStore(reducers)

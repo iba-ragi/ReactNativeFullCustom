@@ -6,22 +6,34 @@ type State = {
   isFetchingUser: boolean
 }
 const initial: State = {
+  user: {
+    user_id: '01011111',
+    name: 'test name'
+  },
   isFetchingUser: false
 }
 
 export default (state: State = initial, action: Actions): State => {
   switch (action.type) {
-    case 'USER#SET_USER#START_FETCHING_USER':
+    case 'TEST_TEST':
+      return {
+        ...state,
+        user: {
+          name: state.user!.name + 'o',
+          user_id: state.user!.user_id + '0'
+        }
+      }
+    case 'USER#START_FETCHING_USER':
       return {
         ...state,
         isFetchingUser: true
       }
-    case 'USER#SET_USER#FAIL_FETCHING_USER':
+    case 'USER#FAIL_FETCHING_USER':
       return {
         ...state,
         isFetchingUser: false
       }
-    case 'USER#SET_USER#SUCCESS_FETCHING_USER':
+    case 'USER#SUCCESS_FETCHING_USER':
       return {
         ...state,
         isFetchingUser: false,
@@ -32,18 +44,22 @@ export default (state: State = initial, action: Actions): State => {
   }
 }
 
+export const addUserText = () => ({
+  type: 'TEST_TEST' as 'TEST_TEST'
+})
 export const startFetchingUser = () => ({
-  type: 'USER#SET_USER#START_FETCHING_USER' as 'USER#SET_USER#START_FETCHING_USER'
+  type: 'USER#START_FETCHING_USER' as 'USER#START_FETCHING_USER'
 })
 export const failFetchingUser = () => ({
-  type: 'USER#SET_USER#FAIL_FETCHING_USER' as 'USER#SET_USER#FAIL_FETCHING_USER'
+  type: 'USER#FAIL_FETCHING_USER' as 'USER#FAIL_FETCHING_USER'
 })
 export const successFetchingUser = (payload: User) => ({
-  type: 'USER#SET_USER#SUCCESS_FETCHING_USER' as 'USER#SET_USER#SUCCESS_FETCHING_USER',
+  type: 'USER#SUCCESS_FETCHING_USER' as 'USER#SUCCESS_FETCHING_USER',
   payload
 })
 
 type Actions =
+  | ReturnType<typeof addUserText>
   | ReturnType<typeof startFetchingUser>
   | ReturnType<typeof failFetchingUser>
   | ReturnType<typeof successFetchingUser>
