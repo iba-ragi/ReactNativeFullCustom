@@ -1,4 +1,4 @@
-package com.subscriptionmanager;
+package com.myapp;
 
 import android.app.Application;
 import android.util.Log;

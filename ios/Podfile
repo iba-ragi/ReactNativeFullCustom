@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'subscriptionManager' do
+target 'myApp' do
   use_native_modules!
 
   pod 'React', :path => '../node_modules/react-native/'
@@ -29,16 +29,16 @@ target 'subscriptionManager' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'subscriptionManagerTests' do
+  target 'myAppTests' do
     inherit! :search_paths
     # Pods for testing
   end
 end
 
-target 'subscriptionManager-tvOS' do
-  # Pods for subscriptionManager-tvOS
+target 'myApp-tvOS' do
+  # Pods for myApp-tvOS
 
-  target 'subscriptionManager-tvOSTests' do
+  target 'myApp-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
