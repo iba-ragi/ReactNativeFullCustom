@@ -14,8 +14,8 @@ if (__DEV__) {
 
 function App() {
   const RootNavigation = createRootNavigation(true)
-  console.log(Config.APP_SCHEME)
-  return <RootNavigation uriPrefix={Config.APP_SCHEME} />
+  console.log(Config.ENV)
+  return <RootNavigation uriPrefix={Config.SCHEME_URL} />
 }
 
 export default App
