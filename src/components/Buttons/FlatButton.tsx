@@ -2,19 +2,21 @@ import React from 'react'
 import { Text } from 'react-native'
 import styled from 'styled-components/native'
 
-type Props = {}
+type Props = {
+  disabled: boolean
+}
 
-export function FlatButton({  }: Props) {
+export function FlatButton({ disabled }: Props) {
   return (
-    <Wrapper>
+    <Wrapper disabled={disabled}>
       <Text>ボタン</Text>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.View`
+const Wrapper = styled.View<Props>`
   flex: 1;
-  background-color: #dbedff;
+  background-color: ${({ disabled }) => (disabled ? '#dbedff' : '#dbdbdb')};
   align-items: center;
   justify-content: center;
 `
