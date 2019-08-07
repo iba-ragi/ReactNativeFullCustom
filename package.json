@@ -14,6 +14,7 @@
     "clean": "watchman watch-del-all && lsof -n -P -i :8081 -t | xargs kill && rm -rf ~/Library/Developer/Xcode/DerivedData && sudo rm -rf '~/Library/Developer/Xcode/iOS\\ DeviceSupport/*' && rm -rf ios/build android/app/build node_modules ios/Pods && yarn install && cd ios && pod install && cd .."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.6.1",
     "axios": "^0.19.0",
     "react": "16.8.6",
     "react-native": "0.60.4",
@@ -30,7 +31,6 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/runtime": "^7.5.5",
-    "@react-native-community/async-storage": "^1.6.1",
     "@storybook/addon-actions": "^5.1.10",
     "@storybook/addon-knobs": "^5.1.10",
     "@storybook/addon-links": "^5.1.10",
