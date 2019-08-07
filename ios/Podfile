@@ -29,20 +29,6 @@ target 'myApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'myAppTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-end
-
-target 'myApp-tvOS' do
-  # Pods for myApp-tvOS
-
-  target 'myApp-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
 
 # post_install do |installer|
