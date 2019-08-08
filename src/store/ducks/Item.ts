@@ -45,16 +45,16 @@ export default (state: State = initial, action: Actions): State => {
 }
 
 export const addUserText = () => ({
-  type: 'TEST_TEST' as 'TEST_TEST'
+  type: 'TEST_TEST' as const
 })
 export const startFetchingUser = () => ({
-  type: 'USER#START_FETCHING_USER' as 'USER#START_FETCHING_USER'
+  type: 'USER#START_FETCHING_USER' as const
 })
 export const failFetchingUser = () => ({
-  type: 'USER#FAIL_FETCHING_USER' as 'USER#FAIL_FETCHING_USER'
+  type: 'USER#FAIL_FETCHING_USER' as const
 })
 export const successFetchingUser = (payload: User) => ({
-  type: 'USER#SUCCESS_FETCHING_USER' as 'USER#SUCCESS_FETCHING_USER',
+  type: 'USER#SUCCESS_FETCHING_USER' as const,
   payload
 })
 
