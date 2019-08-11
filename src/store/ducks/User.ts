@@ -11,26 +11,31 @@ const initial: State = {
 
 export default (state: State = initial, action: Actions): State => {
   switch (action.type) {
-    case 'USER#START_FETCHING_USER':
+    case 'USER/START_FETCHING_USER':
       return {
         ...state,
         isFetchingUser: true
       }
-    case 'USER#FAIL_FETCHING_USER':
+    case 'USER/FAIL_FETCHING_USER':
       return {
         ...state,
         isFetchingUser: false
       }
-    case 'USER#SUCCESS_FETCHING_USER':
+    case 'USER/SUCCESS_FETCHING_USER':
       return {
         ...state,
         isFetchingUser: false,
         user: action.payload
       }
-    case 'USER_EDIT_USER':
+    case 'USER/EDIT_USER':
       return {
         ...state,
         user: action.payload
+      }
+    case 'USER/CLEAR_USER':
+      return {
+        ...state,
+        user: undefined
       }
     default:
       return state
@@ -38,18 +43,21 @@ export default (state: State = initial, action: Actions): State => {
 }
 
 export const startFetchingUser = () => ({
-  type: 'USER#START_FETCHING_USER' as const
+  type: 'USER/START_FETCHING_USER' as const
 })
 export const failFetchingUser = () => ({
-  type: 'USER#FAIL_FETCHING_USER' as const
+  type: 'USER/FAIL_FETCHING_USER' as const
 })
 export const successFetchingUser = (payload: User) => ({
-  type: 'USER#SUCCESS_FETCHING_USER' as const,
+  type: 'USER/SUCCESS_FETCHING_USER' as const,
   payload
 })
 export const createEditUserAction = (payload: User) => ({
-  type: 'USER_EDIT_USER' as const,
+  type: 'USER/EDIT_USER' as const,
   payload
+})
+export const createClearUserAction = () => ({
+  type: 'USER/CLEAR_USER' as const
 })
 
 type Actions =
@@ -57,6 +65,7 @@ type Actions =
   | ReturnType<typeof failFetchingUser>
   | ReturnType<typeof successFetchingUser>
   | ReturnType<typeof createEditUserAction>
+  | ReturnType<typeof createClearUserAction>
 
 export const fetchUser = () => async (
   dispatch: ThunkDispatch<StoreType, {}, Actions>
@@ -85,7 +94,7 @@ export const editUser = () => async (
     const { user_id, name } = getState().UserState.user!
     const data = {
       user_id: user_id + 123456,
-      name: name + '0'
+      name: name + '.'
     }
     dispatch(successFetchingUser(data))
   } catch (error) {

@@ -4,7 +4,7 @@ import { NavigationScreenProps } from 'react-navigation'
 
 import { useSelector, useDispatch } from '@src/hooks/useRedux'
 import { routeNames } from '@src/navigation/routeNames'
-import { editUser } from '@src/store/ducks/User'
+import { editUser, createClearUserAction } from '@src/store/ducks/User'
 import { FlatButton } from '@src/components/Buttons/FlatButton'
 import { colors } from '@src/assets/colors'
 import { size } from '@src/assets/fonts'
@@ -18,10 +18,11 @@ export function Main({ navigation }: Props) {
   }))
 
   const onPressEditUser = () => {
-    dispatch(editUser)
+    dispatch(editUser())
   }
   const onPressLogout = () => {
     // persist clear
+    dispatch(createClearUserAction())
     navigation.navigate(routeNames.Auth.routeName)
   }
 
