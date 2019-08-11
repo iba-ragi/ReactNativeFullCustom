@@ -1,8 +1,14 @@
-## Branches
-- master
-- dev
+## Level
+- 1.2.0(basic template)
+  - TypeScript
+  - Prettier
+  - Redux
+  - Persist
+  - RNConfig
+  - Axios
+  - StyledComponents
 
-## Environment
+## Environment(Build Scheme)
 - Production
 - Development
 
