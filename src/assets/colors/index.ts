@@ -1,6 +1,6 @@
-export default {
-  primary50: '#C1F7DC',
-  primary60: '#B0E1C8',
+const colors = {
+  primary50: '#6D0CFF',
+  primary60: '#640BE8',
   secondary: '#CCC9A1',
   dark087: 'rgba(0,0,0,0.87)',
   dark054: 'rgba(0,0,0,0.54)',
@@ -12,3 +12,5 @@ export default {
   light012: 'rgba(255,255,255,0.12)',
   error: '#C7187A'
 }
+
+export default colors
