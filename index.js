@@ -10,8 +10,8 @@ import StorybookUIRoot from './storybook'
 /**
  * ストーリーブックを使う際は isUsingStorybook = true へ変更
  */
-const isUsingStorybook = true
-// const isUsingStorybook = false
+// const isUsingStorybook = true
+const isUsingStorybook = false
 
 AppRegistry.registerComponent(appName, () =>
   isUsingStorybook ? StorybookUIRoot : App
