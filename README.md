@@ -40,3 +40,12 @@ $ yarn tsc
 ```shell
 $ yarn clean
 ```
+
+----
+
+## Operation this repository for Ibaragi
+[] v1.0.0 からブランチを切る
+[] READMEの更新
+[] 機能の実装
+[] masterへのマージ
+[] 派生ブランチへ変更をマージ(v1.0.0の更新の場合)
