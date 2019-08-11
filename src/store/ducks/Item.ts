@@ -1,83 +1,29 @@
-import { StoreType } from '../'
-import { ThunkDispatch } from 'redux-thunk'
-
+type Pokemon = {
+  name: string
+  type: string
+}
 type State = {
-  user?: User
-  isFetchingUser: boolean
+  pokemons: Pokemon[]
 }
 const initial: State = {
-  user: {
-    user_id: 1111,
-    name: 'test name'
-  },
-  isFetchingUser: false
+  pokemons: []
 }
 
 export default (state: State = initial, action: Actions): State => {
   switch (action.type) {
-    case 'TEST_TEST':
+    case 'SET_POKEMONS':
       return {
         ...state,
-        user: {
-          user_id: state.user!.user_id,
-          name: state.user!.name + 'o'
-        }
-      }
-    case 'USER#START_FETCHING_USER':
-      return {
-        ...state,
-        isFetchingUser: true
-      }
-    case 'USER#FAIL_FETCHING_USER':
-      return {
-        ...state,
-        isFetchingUser: false
-      }
-    case 'USER#SUCCESS_FETCHING_USER':
-      return {
-        ...state,
-        isFetchingUser: false,
-        user: action.payload
+        pokemons: action.payload
       }
     default:
       return state
   }
 }
 
-export const addUserText = () => ({
-  type: 'TEST_TEST' as const
-})
-export const startFetchingUser = () => ({
-  type: 'USER#START_FETCHING_USER' as const
-})
-export const failFetchingUser = () => ({
-  type: 'USER#FAIL_FETCHING_USER' as const
-})
-export const successFetchingUser = (payload: User) => ({
-  type: 'USER#SUCCESS_FETCHING_USER' as const,
+type Actions = ReturnType<typeof createSetPokemons>
+
+export const createSetPokemons = (payload: Pokemon[]) => ({
+  type: 'SET_POKEMONS' as const,
   payload
 })
-
-type Actions =
-  | ReturnType<typeof addUserText>
-  | ReturnType<typeof startFetchingUser>
-  | ReturnType<typeof failFetchingUser>
-  | ReturnType<typeof successFetchingUser>
-
-export const fetchUser = () => async (
-  dispatch: ThunkDispatch<StoreType, {}, Actions>
-  // getState: () => StoreType
-) => {
-  dispatch(startFetchingUser())
-  try {
-    // const { user_id } = getState().SessionDomainState.user!
-    // const data = await getUser(user_id)
-    const data = {
-      user_id: 1111,
-      name: 'string'
-    }
-    dispatch(successFetchingUser(data))
-  } catch (error) {
-    dispatch(failFetchingUser())
-  }
-}

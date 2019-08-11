@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { NavigationContainer } from 'react-navigation'
@@ -16,12 +16,18 @@ function App() {
   const [{ RootNavigation }, setRootNavigation] = useState<{
     RootNavigation: NavigationContainer | undefined
   }>({ RootNavigation: undefined })
-  useEffect(() => {
-    setRootNavigation({ RootNavigation: createRootNavigation(true) })
-    console.log(Config.ENV)
+
+  const onBeforeLift = useCallback(() => {
+    const isSession = !!Store.store.getState().UserState.user
+    setRootNavigation({ RootNavigation: createRootNavigation(isSession) })
   }, [])
+
   return (
-    <PersistGate loading={null} persistor={Store.persistor}>
+    <PersistGate
+      loading={null}
+      persistor={Store.persistor}
+      onBeforeLift={onBeforeLift}
+    >
       <Provider store={Store.store}>
         {RootNavigation && <RootNavigation uriPrefix={Config.SCHEME_URL} />}
       </Provider>

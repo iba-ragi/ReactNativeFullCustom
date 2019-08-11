@@ -1,10 +1,13 @@
 import React from 'react'
-import { Text } from 'react-native'
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 import { NavigationScreenProps } from 'react-navigation'
-import { routeNames } from '@src/navigation/routeNames'
+
 import { useSelector, useDispatch } from '@src/hooks/useRedux'
-import { addUserText } from '@src/store/ducks/User'
+import { routeNames } from '@src/navigation/routeNames'
+import { editUser, createClearUserAction } from '@src/store/ducks/User'
+import { FlatButton } from '@src/components/Buttons/FlatButton'
+import { colors } from '@src/assets/colors'
+import { size } from '@src/assets/fonts'
 
 type Props = {} & NavigationScreenProps
 
@@ -13,15 +16,34 @@ export function Main({ navigation }: Props) {
   const { user } = useSelector(({ UserState: { user } }) => ({
     user
   }))
+
+  const onPressEditUser = () => {
+    dispatch(editUser())
+  }
+  const onPressLogout = () => {
+    // persist clear
+    dispatch(createClearUserAction())
+    navigation.navigate(routeNames.Auth.routeName)
+  }
+
   return (
     <Wrapper>
-      <Text>name: {user!.name}</Text>
-      <Text>user_id: {user!.user_id}</Text>
-      <Text onPress={() => dispatch(addUserText())}>[add 0]</Text>
-      <HelloWorld
-        onPress={() => {
-          navigation.navigate(routeNames.Auth.routeName)
-        }}
+      <AccountInfoContainer>
+        <AccountInfoItem>Name: {user!.name}</AccountInfoItem>
+        <AccountInfoItem>ID: {user!.user_id}</AccountInfoItem>
+      </AccountInfoContainer>
+
+      <FlatButton
+        text={'ユーザ編集'}
+        onPress={onPressEditUser}
+        background={colors.secondary}
+        css={buttonCss}
+      />
+      <FlatButton
+        text={'LOGOUT'}
+        onPress={onPressLogout}
+        background={colors.error}
+        css={buttonCss}
       />
     </Wrapper>
   )
@@ -33,8 +55,16 @@ const Wrapper = styled.View`
   align-items: center;
   justify-content: center;
 `
-const HelloWorld = styled.Text.attrs({
-  children: 'HelloWorld >'
-})`
-  font-size: 18px;
+const AccountInfoContainer = styled.View`
+  padding: 24px;
+  background-color: ${colors.light030};
+  align-items: center;
+  justify-content: center;
+`
+const AccountInfoItem = styled.Text`
+  font-size: ${size[20]};
+`
+
+const buttonCss = css`
+  margin-top: 8px;
 `

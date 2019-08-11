@@ -1,6 +1,6 @@
-export default {
-  primary50: '#C1F7DC',
-  primary60: '#B0E1C8',
+export const colors = {
+  primary50: '#6D0CFF',
+  primary60: '#640BE8',
   secondary: '#CCC9A1',
   dark087: 'rgba(0,0,0,0.87)',
   dark054: 'rgba(0,0,0,0.54)',

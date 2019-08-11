@@ -13,6 +13,10 @@ export interface AsyncDispatch {
 }
 
 export const useDispatch = useReactReduxDispatch
+// export const useDispatch = () => {
+//   return useReactReduxDispatch<AsyncDispatch>()
+// }
+
 export function useSelector<TSelected>(
   selector: (store: StoreType) => TSelected
 ) {
