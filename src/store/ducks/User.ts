@@ -6,23 +6,11 @@ type State = {
   isFetchingUser: boolean
 }
 const initial: State = {
-  user: {
-    user_id: 1111,
-    name: 'test name'
-  },
   isFetchingUser: false
 }
 
 export default (state: State = initial, action: Actions): State => {
   switch (action.type) {
-    case 'TEST_TEST':
-      return {
-        ...state,
-        user: {
-          user_id: state.user!.user_id + 1,
-          name: state.user!.name
-        }
-      }
     case 'USER#START_FETCHING_USER':
       return {
         ...state,
@@ -39,14 +27,16 @@ export default (state: State = initial, action: Actions): State => {
         isFetchingUser: false,
         user: action.payload
       }
+    case 'USER_EDIT_USER':
+      return {
+        ...state,
+        user: action.payload
+      }
     default:
       return state
   }
 }
 
-export const addUserText = () => ({
-  type: 'TEST_TEST' as const
-})
 export const startFetchingUser = () => ({
   type: 'USER#START_FETCHING_USER' as const
 })
@@ -57,12 +47,16 @@ export const successFetchingUser = (payload: User) => ({
   type: 'USER#SUCCESS_FETCHING_USER' as const,
   payload
 })
+export const createEditUserAction = (payload: User) => ({
+  type: 'USER_EDIT_USER' as const,
+  payload
+})
 
 type Actions =
-  | ReturnType<typeof addUserText>
   | ReturnType<typeof startFetchingUser>
   | ReturnType<typeof failFetchingUser>
   | ReturnType<typeof successFetchingUser>
+  | ReturnType<typeof createEditUserAction>
 
 export const fetchUser = () => async (
   dispatch: ThunkDispatch<StoreType, {}, Actions>
@@ -73,11 +67,28 @@ export const fetchUser = () => async (
     // const { user_id } = getState().SessionDomainState.user!
     // const data = await getUser(user_id)
     const data = {
-      user_id: 1111,
-      name: 'string'
+      user_id: 1234567890,
+      name: 'イバラギ'
     }
     dispatch(successFetchingUser(data))
   } catch (error) {
     dispatch(failFetchingUser())
+  }
+}
+
+export const editUser = () => async (
+  dispatch: ThunkDispatch<StoreType, {}, Actions>,
+  getState: () => StoreType
+) => {
+  // dispatch(startFetchingUser())
+  try {
+    const { user_id, name } = getState().UserState.user!
+    const data = {
+      user_id: user_id + 123456,
+      name: name + '0'
+    }
+    dispatch(successFetchingUser(data))
+  } catch (error) {
+    // dispatch(failFetchingUser())
   }
 }
