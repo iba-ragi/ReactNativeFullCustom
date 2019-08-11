@@ -42,13 +42,13 @@ export default (state: State = initial, action: Actions): State => {
   }
 }
 
-export const startFetchingUser = () => ({
+export const createStartFetchUserAction = () => ({
   type: 'USER/START_FETCHING_USER' as const
 })
-export const failFetchingUser = () => ({
+export const createFailFetchUserAction = () => ({
   type: 'USER/FAIL_FETCHING_USER' as const
 })
-export const successFetchingUser = (payload: User) => ({
+export const createSuccessFetchUserAction = (payload: User) => ({
   type: 'USER/SUCCESS_FETCHING_USER' as const,
   payload
 })
@@ -61,9 +61,9 @@ export const createClearUserAction = () => ({
 })
 
 type Actions =
-  | ReturnType<typeof startFetchingUser>
-  | ReturnType<typeof failFetchingUser>
-  | ReturnType<typeof successFetchingUser>
+  | ReturnType<typeof createStartFetchUserAction>
+  | ReturnType<typeof createFailFetchUserAction>
+  | ReturnType<typeof createSuccessFetchUserAction>
   | ReturnType<typeof createEditUserAction>
   | ReturnType<typeof createClearUserAction>
 
@@ -71,7 +71,7 @@ export const fetchUser = () => async (
   dispatch: ThunkDispatch<StoreType, {}, Actions>
   // getState: () => StoreType
 ) => {
-  dispatch(startFetchingUser())
+  dispatch(createStartFetchUserAction())
   try {
     // const { user_id } = getState().SessionDomainState.user!
     // const data = await getUser(user_id)
@@ -79,9 +79,9 @@ export const fetchUser = () => async (
       user_id: 1234567890,
       name: 'イバラギ'
     }
-    dispatch(successFetchingUser(data))
+    dispatch(createSuccessFetchUserAction(data))
   } catch (error) {
-    dispatch(failFetchingUser())
+    dispatch(createFailFetchUserAction())
   }
 }
 
@@ -89,15 +89,15 @@ export const editUser = () => async (
   dispatch: ThunkDispatch<StoreType, {}, Actions>,
   getState: () => StoreType
 ) => {
-  // dispatch(startFetchingUser())
+  // dispatch(createStartFetchUserAction())
   try {
     const { user_id, name } = getState().UserState.user!
     const data = {
       user_id: user_id + 123456,
       name: name + '.'
     }
-    dispatch(successFetchingUser(data))
+    dispatch(createSuccessFetchUserAction(data))
   } catch (error) {
-    // dispatch(failFetchingUser())
+    // dispatch(createFailFetchUserAction())
   }
 }
