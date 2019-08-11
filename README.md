@@ -44,7 +44,8 @@ $ yarn clean
 ----
 
 ## Operation this repository for Ibaragi
-[] v1.0.0 からブランチを切る
+[] level1 からブランチを切る
+[] 他のlevelの機能が欲しい場合は適宜marge
 [] READMEの更新
 [] 機能の実装
 [] masterへのマージ
