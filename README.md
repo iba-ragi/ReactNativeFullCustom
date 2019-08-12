@@ -47,9 +47,16 @@ $ yarn clean
 ----
 
 ## Operation this repository for Ibaragi
+### work flow
 [] level1 からブランチを切る
 [] 他のlevelの機能が欲しい場合は適宜marge
 [] READMEの更新
 [] 機能の実装
 [] masterへのマージ
 [] 派生ブランチへ変更をマージ(v1.0.0の更新の場合)
+
+### leveling
+`level_a.b.c`
+- a: base functions
+- b: base functions + mulch additional functions
+- c: base functions + additional function
