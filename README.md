@@ -15,7 +15,7 @@
 - Production
 - Development
 
-## Setup
+## Build
 1. Install modules
 ```shell
 $ yarn install && cd ios && pod install && cd ..  
@@ -35,6 +35,15 @@ $ yarn debugger
 ```shell
 $ yarn tsc
 ```
+
+## Custom setup
+### information property
+check env.dev/env.prod
+
+### Splash & Icon Image
+https://github.com/bamlab/generator-rn-toolbox/blob/master/generators/assets/README.md
+
+
 
 ## Troubleshooting
 ```shell
