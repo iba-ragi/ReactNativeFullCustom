@@ -4,7 +4,7 @@ import { NavigationScreenProps } from 'react-navigation'
 
 import { useSelector, useDispatch } from '@src/hooks/useRedux'
 import { routeNames } from '@src/navigation/routeNames'
-import { editUser, createClearUserAction } from '@src/store/ducks/User'
+import { editUser, clearUserCreator } from '@src/store/ducks/User'
 import { FlatButton } from '@src/components/Buttons/FlatButton'
 import { colors } from '@src/assets/colors'
 import { size } from '@src/assets/fonts'
@@ -22,7 +22,7 @@ export function Main({ navigation }: Props) {
   }
   const onPressLogout = () => {
     // persist clear
-    dispatch(createClearUserAction())
+    dispatch(clearUserCreator())
     navigation.navigate(routeNames.Auth.routeName)
   }
 

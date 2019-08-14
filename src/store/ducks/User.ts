@@ -38,40 +38,44 @@ export default (state: State = initial, action: Actions): State => {
         user: undefined
       }
     default:
+      // const _: never = action
       return state
   }
 }
 
-export const createStartFetchUserAction = () => ({
-  type: 'USER/START_FETCHING_USER' as const
-})
-export const createFailFetchUserAction = () => ({
-  type: 'USER/FAIL_FETCHING_USER' as const
-})
-export const createSuccessFetchUserAction = (payload: User) => ({
-  type: 'USER/SUCCESS_FETCHING_USER' as const,
-  payload
-})
-export const createEditUserAction = (payload: User) => ({
+const fetchUserCreator = {
+  start: () => ({
+    type: 'USER/START_FETCHING_USER' as const
+  }),
+  fail: () => ({
+    type: 'USER/FAIL_FETCHING_USER' as const
+  }),
+  success: (payload: User) => ({
+    type: 'USER/SUCCESS_FETCHING_USER' as const,
+    payload
+  })
+}
+
+export const editUserCreator = (payload: User) => ({
   type: 'USER/EDIT_USER' as const,
   payload
 })
-export const createClearUserAction = () => ({
+export const clearUserCreator = () => ({
   type: 'USER/CLEAR_USER' as const
 })
 
 type Actions =
-  | ReturnType<typeof createStartFetchUserAction>
-  | ReturnType<typeof createFailFetchUserAction>
-  | ReturnType<typeof createSuccessFetchUserAction>
-  | ReturnType<typeof createEditUserAction>
-  | ReturnType<typeof createClearUserAction>
+  | ReturnType<typeof fetchUserCreator.start>
+  | ReturnType<typeof fetchUserCreator.fail>
+  | ReturnType<typeof fetchUserCreator.success>
+  | ReturnType<typeof editUserCreator>
+  | ReturnType<typeof clearUserCreator>
 
-export const fetchUser = () => async (
+export const getSetUser = () => async (
   dispatch: ThunkDispatch<StoreType, {}, Actions>
   // getState: () => StoreType
 ) => {
-  dispatch(createStartFetchUserAction())
+  dispatch(fetchUserCreator.start())
   try {
     // const { user_id } = getState().SessionDomainState.user!
     // const data = await getUser(user_id)
@@ -79,9 +83,9 @@ export const fetchUser = () => async (
       user_id: 1234567890,
       name: 'イバラギ'
     }
-    dispatch(createSuccessFetchUserAction(data))
+    dispatch(fetchUserCreator.success(data))
   } catch (error) {
-    dispatch(createFailFetchUserAction())
+    dispatch(fetchUserCreator.fail())
   }
 }
 
@@ -89,15 +93,15 @@ export const editUser = () => async (
   dispatch: ThunkDispatch<StoreType, {}, Actions>,
   getState: () => StoreType
 ) => {
-  // dispatch(createStartFetchUserAction())
+  // dispatch(fetchUserCreator.start())
   try {
     const { user_id, name } = getState().UserState.user!
     const data = {
       user_id: user_id + 123456,
       name: name + '.'
     }
-    dispatch(createSuccessFetchUserAction(data))
+    dispatch(fetchUserCreator.success(data))
   } catch (error) {
-    // dispatch(createFailFetchUserAction())
+    // dispatch(fetchUserCreator.fail())
   }
 }

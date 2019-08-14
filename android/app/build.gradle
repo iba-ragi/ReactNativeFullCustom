@@ -128,12 +128,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.myapp"
+        applicationId project.env.get("ANDROID_APP_ID")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        resValue "string", "build_config_package", "com.myapp"
+        versionCode project.env.get("ANDROID_VERSION").toInteger()
+        versionName project.env.get("ANDROID_VERSION_NAME")
+        resValue "string", "build_config_package", "com.app"
     }
     splits {
         abi {
