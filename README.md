@@ -38,9 +38,10 @@ $ yarn tsc
 
 ## Custom setup
 ### information property
-check env.dev/env.prod
+Check `env.dev` / `env.prod`
 
 ### Splash & Icon Image
+Check this document
 https://github.com/bamlab/generator-rn-toolbox/blob/master/generators/assets/README.md
 
 
