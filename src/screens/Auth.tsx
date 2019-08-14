@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 import { NavigationScreenProps } from 'react-navigation'
 import { routeNames } from '@src/navigation/routeNames'
 import { useDispatch } from '@src/hooks/useRedux'
-import { fetchUser } from '@src/store/ducks/User'
+import { getSetUser } from '@src/store/ducks/User'
 import { FlatButton } from '@src/components/Buttons/FlatButton'
 
 type Props = {} & NavigationScreenProps
@@ -11,7 +11,7 @@ type Props = {} & NavigationScreenProps
 export function Auth({ navigation }: Props) {
   const dispatch = useDispatch()
   const onPressLogin = () => {
-    dispatch(fetchUser())
+    dispatch(getSetUser())
     navigation.navigate(routeNames.Main.routeName)
   }
   return (
