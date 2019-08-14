@@ -9,8 +9,10 @@
     "fmt": "prettier --write src/**/*.{js,tsx} ",
     "tsc": "tsc --watch",
     "dev:ios": "ENVFILE=.env.dev react-native run-ios --scheme Development",
-    "dev:android": "ENVFILE=.env.dev react-native run-android",
-    "clean": "watchman watch-del-all && lsof -n -P -i :8081 -t | xargs kill && rm -rf ~/Library/Developer/Xcode/DerivedData && sudo rm -rf '~/Library/Developer/Xcode/iOS\\ DeviceSupport/*' && rm -rf ios/build android/app/build node_modules ios/Pods && yarn install && cd ios && pod install && cd .."
+    "dev:android": "ENVFILE=.env.dev react-native run-android --appIdSuffix myAppDev",
+    "clean": "watchman watch-del-all && lsof -n -P -i :8081 -t | xargs kill && sudo rm -rf '~/Library/Developer/Xcode/iOS\\ DeviceSupport/*' ~/Library/Developer/Xcode/DerivedData && rm -rf ios/build android/app/build node_modules ios/Pods && yarn install && cd ios && pod install && cd .. && cd android && ./gradlew clean cleanBuildCache && cd ..",
+    "clean:ios": "watchman watch-del-all && lsof -n -P -i :8081 -t | xargs kill && sudo rm -rf '~/Library/Developer/Xcode/iOS\\ DeviceSupport/*' ~/Library/Developer/Xcode/DerivedData  && rm -rf ios/build node_modules ios/Pods && yarn install && cd ios && pod install && cd ..",
+    "clean:android": "watchman watch-del-all && lsof -n -P -i :8081 -t | xargs kill && rm -rf ios/build android/app/build node_modules && yarn install && cd android && ENVFILE=.env.dev ./gradlew clean cleanBuildCache && cd .."
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
