@@ -2,6 +2,9 @@
 - [master(full custom)](https://github.com/iba-ragi/ReactNativeFullCustom)
   - Has all functions 
   
+- [1.3.0](https://github.com/iba-ragi/ReactNativeFullCustom/tree/level_1.3.0)
+  - +[RN Facebook SDK](https://github.com/facebook/react-native-fbsdk)
+
 - [1.0.0(basic template)](https://github.com/iba-ragi/ReactNativeFullCustom/tree/level_1.0.0)
   - TypeScript
   - Prettier
