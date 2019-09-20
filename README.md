@@ -68,5 +68,5 @@ $ yarn clean
 ### leveling
 `level_a.b.c`
 - a: base functions
-- b: base functions + mulch additional functions
+- b: base functions + multi additional functions
 - c: base functions + additional function
