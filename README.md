@@ -1,10 +1,12 @@
 ## Level
 - [master(full custom)](https://github.com/iba-ragi/ReactNativeFullCustom)
   - Has all functions 
+- [1.3.0](https://github.com/iba-ragi/ReactNativeFullCustom/tree/level_1.3.0)
+  - +[RN Facebook SDK](https://github.com/facebook/react-native-fbsdk)
 - [1.2.0](https://github.com/iba-ragi/ReactNativeFullCustom/tree/level_1.2.0)
-  - +RNFirebase
+  - +[RNFirebase](https://invertase.io/oss/react-native-firebase/)
 - [1.1.0](https://github.com/iba-ragi/ReactNativeFullCustom/tree/level_1.1.0)
-  - +StoryBoard
+  - +[StoryBoard](https://storybook.js.org/docs/guides/guide-react-native/)
 - [1.0.0(basic template)](https://github.com/iba-ragi/ReactNativeFullCustom/tree/level_1.0.0)
   - TypeScript
   - Prettier

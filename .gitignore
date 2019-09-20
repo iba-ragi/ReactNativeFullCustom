@@ -64,3 +64,7 @@ buck-out/
 
 # react-native-config codegen
 ios/tmp.xcconfig
+
+# local env
+.env.dev.local
+.env.prod.local
